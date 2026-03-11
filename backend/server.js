@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const http = require('http');
+const path = require('path');
 const { Server } = require('socket.io');
 
 // Load environment variables
@@ -66,6 +67,15 @@ socketHandler(io);
 // Make io accessible to routes
 app.set('io', io);
 
+// Serve frontend in production (single-service deployment)
+if (process.env.NODE_ENV === 'production') {
+  const frontendDistPath = path.join(__dirname, '..', 'frontend', 'dist');
+  app.use(express.static(frontendDistPath));
+  app.get(/^\/(?!api).*/, (req, res) => {
+    res.sendFile(path.join(frontendDistPath, 'index.html'));
+  });
+}
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
@@ -75,10 +85,17 @@ app.use((err, req, res, next) => {
   });
 });
 
-// 404 handler
-app.use((req, res) => {
+// 404 handler for API routes
+app.use('/api', (req, res) => {
   res.status(404).json({ message: 'Route not found' });
 });
+
+// 404 handler for non-API in development
+if (process.env.NODE_ENV !== 'production') {
+  app.use((req, res) => {
+    res.status(404).json({ message: 'Route not found' });
+  });
+}
 
 // Start server
 const PORT = process.env.PORT || 5000;
