@@ -7,7 +7,6 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Textarea } from '@/components/ui/textarea';
 import { Separator } from '@/components/ui/separator';
 import {
@@ -19,13 +18,11 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import {
-  Clock,
   CheckCircle,
   XCircle,
   RefreshCw,
   MessageSquare,
   Download,
-  Star,
   Loader2,
   ArrowLeft,
   Send
@@ -259,7 +256,7 @@ const OrderDetails = () => {
                   </>
                 )}
                 {['pending', 'active'].includes(order.status) && (
-                  <Button onClick={() => setShowCancelDialog(true)} variant="destructive" outline>
+                  <Button onClick={() => setShowCancelDialog(true)} variant="destructive">
                     <XCircle className="h-4 w-4 mr-2" />
                     Cancel Order
                   </Button>

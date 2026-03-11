@@ -14,7 +14,6 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Separator } from '@/components/ui/separator';
 import { Plus, X, Loader2, ArrowLeft, Upload } from 'lucide-react';
 import { toast } from 'sonner';
 

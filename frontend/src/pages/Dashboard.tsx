@@ -12,8 +12,10 @@ import {
   DollarSign,
   Briefcase,
   Star,
+  TrendingUp,
   ArrowRight,
-  Loader2
+  Loader2,
+  Clock
 } from 'lucide-react';
 import { toast } from 'sonner';
 

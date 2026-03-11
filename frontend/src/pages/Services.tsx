@@ -21,8 +21,7 @@ import {
   Star,
   Filter,
   ChevronLeft,
-  ChevronRight,
-  Loader2
+  ChevronRight
 } from 'lucide-react';
 import { toast } from 'sonner';
 

@@ -10,9 +10,6 @@ import {
   Briefcase,
   ShoppingBag,
   DollarSign,
-  Star,
-  Flag,
-  TrendingUp,
   ArrowRight
 } from 'lucide-react';
 import { toast } from 'sonner';

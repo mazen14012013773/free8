@@ -38,7 +38,6 @@ const ServiceDetails = () => {
   
   const [service, setService] = useState<Service | null>(null);
   const [reviews, setReviews] = useState<Review[]>([]);
-  const [moreServices, setMoreServices] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedPackage, setSelectedPackage] = useState<'basic' | 'standard' | 'premium'>('basic');
   const [showOrderDialog, setShowOrderDialog] = useState(false);
@@ -57,7 +56,6 @@ const ServiceDetails = () => {
       const response = await serviceService.getService(id!);
       setService(response.service);
       setReviews(response.reviews);
-      setMoreServices(response.moreServices);
     } catch (error) {
       toast.error('Failed to load service details');
       navigate('/services');
@@ -361,9 +359,9 @@ const ServiceDetails = () => {
                       className="w-full mb-4"
                       size="lg"
                       onClick={handleOrder}
-                      disabled={user?._id === service.freelancer._id}
+                      disabled={user?.id === service.freelancer._id}
                     >
-                      {user?._id === service.freelancer._id
+                      {user?.id === service.freelancer._id
                         ? 'Your Service'
                         : 'Continue (${selectedPackageDetails.price})'}
                     </Button>
