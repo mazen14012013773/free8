@@ -40,7 +40,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static('uploads'));
 
 // Database connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/freelance_marketplace', {
+const mongoUri =
+  process.env.MONGODB_URI ||
+  process.env.MONGO_URL ||
+  process.env.MONGO_PUBLIC_URL ||
+  'mongodb://localhost:27017/freelance_marketplace';
+
+mongoose.connect(mongoUri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
